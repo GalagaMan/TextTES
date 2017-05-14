@@ -18,14 +18,16 @@ public class Game implements Serializable {
         cave.name = "peschera trolya";
         cave.description = "you in the darkness, the lights turn on and u see _____INTERNET+TRO_))_LL!";
         Item ring = new Item("ring");
-        Item sword = new Item("sword");
+        Item sword = new Weapon("sword",30);
+        Item sword2 = new Weapon("sword_of_pain",100);
         cave.add(ring);
         cave.add(sword);
+        cave.add(sword2);
 
         Room wood  = new Room();
         wood.name = "lyes";
         wood.description = "you in the forest. In front sign._Attention computer NERDS!";
-        Item healthPotion = new Item("health+50");
+        Item healthPotion = new Item("1UP");
         wood.add(healthPotion);
         new Troll(this, "Leps", wood);
 

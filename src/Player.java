@@ -1,10 +1,14 @@
 /**
  * Created by PeppaPig on 12/10/2016.
  */
+import com.sun.corba.se.impl.orbutil.closure.Constant;
+
 import java.io.Serializable;
 import java.util.*;
 
 public class Player implements Serializable {
+    final int DAMAGE = 10;
+
     Game game;
     Room location;
     Item hands[] = new Item[2];
@@ -13,7 +17,7 @@ public class Player implements Serializable {
     HashMap<String, Item> inventory;
 
     Player(Game game, Room location) {
-        inventory = new HashMap<String, Item>();
+        inventory = new HashMap<>();
         this.game = game;
         this.location = location;
     }
@@ -23,7 +27,18 @@ public class Player implements Serializable {
     }
 
     void hit(Mob mob) {
-        mob.health -= 10;
+        int buffdamage = 0;
+        for(Item i : hands){
+            if(i instanceof Weapon) {
+                Weapon weapon = (Weapon)i;
+                buffdamage += weapon.damage;
+            }
+        }
+
+        if(buffdamage==0)
+            buffdamage=DAMAGE;
+
+        mob.health -= buffdamage;
         if (mob.health <= 0) {
             mob.location.remove(mob);
             game.remove(mob);
@@ -80,6 +95,7 @@ public class Player implements Serializable {
                 return i;
         return -1;
     }
+
 
     boolean isAlive(){
         return health >0;
