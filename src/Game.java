@@ -25,6 +25,8 @@ public class Game implements Serializable {
         Room wood  = new Room();
         wood.name = "lyes";
         wood.description = "you in the forest. In front sign._Attention computer NERDS!";
+        Item healthPotion = new Item("health+50");
+        wood.add(healthPotion);
         new Troll(this, "Leps", wood);
 
 

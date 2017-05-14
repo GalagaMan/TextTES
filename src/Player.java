@@ -4,7 +4,7 @@
 import java.io.Serializable;
 import java.util.*;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
     Game game;
     Room location;
     Item hands[] = new Item[2];
